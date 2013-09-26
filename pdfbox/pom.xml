@@ -27,7 +27,7 @@
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>pdfbox</artifactId>
+  <artifactId>pdfbox-kgb</artifactId>
   <packaging>bundle</packaging>
 
   <name>Apache PDFBox</name>
@@ -153,6 +153,21 @@
       </plugin>
     </plugins>
   </build>
+
+    <distributionManagement>
+        <repository>
+            <id>Nexus</id>
+            <name>Nexus Public Mirror</name>
+            <url>http://nexus.financial.com/nexus/content/repositories/releases</url>
+            <uniqueVersion>true</uniqueVersion>
+        </repository>
+        <snapshotRepository>
+            <id>Nexus</id>
+            <name>Nexus Public Mirror</name>
+            <url>http://nexus.financial.com/nexus/content/repositories/snapshots</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>
 

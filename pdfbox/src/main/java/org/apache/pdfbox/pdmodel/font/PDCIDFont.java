@@ -16,21 +16,16 @@
  */
 package org.apache.pdfbox.pdmodel.font;
 
-import java.io.IOException;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.pdfbox.cos.COSArray;
-import org.apache.pdfbox.cos.COSBase;
-import org.apache.pdfbox.cos.COSDictionary;
-import org.apache.pdfbox.cos.COSName;
-import org.apache.pdfbox.cos.COSNumber;
-import org.apache.pdfbox.encoding.conversion.CMapSubstitution;
+import org.apache.pdfbox.cos.*;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.util.ResourceLoader;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This is implementation for the CIDFontType0/CIDFontType2 Fonts.
@@ -322,15 +317,24 @@ public abstract class PDCIDFont extends PDSimpleFont
             {
                 String resourceName = resourceRootCMAP + cidSystemInfo;
                 try {
-                    cmap = parseCmap( resourceRootCMAP, ResourceLoader.loadResource( resourceName ));
-                    if( cmap == null)
+                    InputStream resourceIn = ResourceLoader.loadResource(resourceName);
+                    if (resourceIn != null)
                     {
-                        log.error("Error: Could not parse predefined CMAP file for '" + cidSystemInfo + "'" );
+                        cmap = parseCmap( resourceRootCMAP, resourceIn);
+                        if( cmap == null)
+                        {
+                            log.error("Error: Could not parse predefined CMAP file for '" + cidSystemInfo + "'" );
+                        }
+                    }
+                    else
+                    {
+                        super.determineEncoding();
                     }
                 }
                 catch(IOException exception) 
                 {
-                    log.error("Error: Could not find predefined CMAP file for '" + cidSystemInfo + "'" );
+                    log.error("Error loading predefined CMAP file for '" + cidSystemInfo + "': "
+                              + exception.getClass().getName() + ": " + exception.getMessage() );
                 }
             }
         }
