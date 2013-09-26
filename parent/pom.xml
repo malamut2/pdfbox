@@ -270,4 +270,20 @@
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/maven/pom/branches/1.8/pdfbox-parent</developerConnection>
     <url>http://svn.apache.org/viewvc/maven/pom/branches/1.8/pdfbox-parent</url>
   </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>Nexus</id>
+            <name>Nexus Public Mirror</name>
+            <url>http://nexus.financial.com/nexus/content/repositories/releases</url>
+            <uniqueVersion>true</uniqueVersion>
+        </repository>
+        <snapshotRepository>
+            <id>Nexus</id>
+            <name>Nexus Public Mirror</name>
+            <url>http://nexus.financial.com/nexus/content/repositories/snapshots</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
