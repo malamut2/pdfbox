@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.pdfbox</groupId>
     <artifactId>pdfbox-parent</artifactId>
-    <version>1.8.3-SNAPSHOT</version>
+    <version>1.8.3-financial-1</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>pdfbox-kgb</artifactId>
+  <artifactId>pdfbox</artifactId>
   <packaging>bundle</packaging>
 
   <name>Apache PDFBox</name>
